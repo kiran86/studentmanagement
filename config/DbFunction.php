@@ -33,6 +33,9 @@ class DbFunction{
 			echo "<script>alert('Invalid Details')</script>";
 			header('location:login.php');
 		}
+		else if($loginid != "admin") {
+			header('location:view-profile.php');
+		}
 		else{
 			header('location:add-course.php');
 		}
