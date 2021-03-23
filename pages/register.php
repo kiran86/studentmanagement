@@ -1,12 +1,6 @@
 
 
 <?php
-session_start ();
-
-if (! (isset ( $_SESSION ['login'] ))) {
-	
-	header ( 'location:../index.php' );
-}
 include('../config/DbFunction.php');
 	$obj=new DbFunction();
 	$rs=$obj->showCourse();
@@ -54,7 +48,7 @@ include('../config/DbFunction.php');
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h4 class="page-header"> <?php echo strtoupper("welcome"." ".htmlentities($_SESSION['login']));?></h4>
+					<h4 class="page-header"> Welcome Student </h4>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>

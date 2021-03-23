@@ -67,6 +67,7 @@ if(isset($_POST['submit'])){
                               
                                 <!-- Change this to a button or input when using this as a form -->
                                 <input type="submit" value="login" name="submit" class="btn btn-lg btn-success btn-block">
+                                <a href="register.php" name="register" class="btn btn-lg btn-link btn-block"> Registration for New Students </a>
                             </fieldset>
                         </form>
                     </div>
