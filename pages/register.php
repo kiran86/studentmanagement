@@ -42,9 +42,10 @@ include('../config/DbFunction.php');
 <body>
 <form method="post" >
 	<div id="wrapper">
-	<?php include('leftbar.php');?>
-
-
+	<nav class="navbar navbar-default navbar-static-top" role="navigation"
+		style="margin-bottom: 0; background-color: #e3f2fd;">
+		<a class="navbar-brand" href="..\index.php">Student Management System</a>
+    </nav>
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
