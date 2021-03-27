@@ -1,5 +1,5 @@
 <?php
-			ob_start();
+	ob_start();
 require('Database.php');
 //$db = Database::getInstance();
 //$mysqli = $db->getConnection();
@@ -83,7 +83,16 @@ class DbFunction{
 		}				
 	}
 
-function showCourse(){
+function showAllDegree(){
+
+	$db = Database::getInstance();
+	$mysqli = $db->getConnection();
+	$query = "SELECT * FROM tbl_degree ";
+	$stmt= $mysqli->query($query);
+	return $stmt;
+}
+
+function showAllCourse(){
 	
 	$db = Database::getInstance();
 	$mysqli = $db->getConnection();
@@ -103,7 +112,7 @@ function showCourse1($cid){
 	
 }
 
-function showSubject(){
+function showAllSubject(){
 	
 	$db = Database::getInstance();
 	$mysqli = $db->getConnection();

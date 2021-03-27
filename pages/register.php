@@ -1,9 +1,9 @@
-
-
 <?php
 include('../config/DbFunction.php');
 	$obj=new DbFunction();
-	$rs=$obj->showCourse();
+	$rsDeg = $obj->showAllDegree();
+	$rsCourse=$obj->showAllCourse();
+	$rsSubj = $obj->showAllSubject();
 	$rs1=$obj->showCountry();
 	$ses=$obj->showSession();
 	$res1=$ses->fetch_object();
@@ -46,7 +46,7 @@ include('../config/DbFunction.php');
 		style="margin-bottom: 0; background-color: #e3f2fd;">
 		<a class="navbar-brand" href="..\index.php">Student Management System</a>
     </nav>
-		<div id="page-wrapper">
+		<div id="page-wrapper" style="margin: 0 0 0 0;">
 			<div class="row">
 				<div class="col-lg-12">
 					<h4 class="page-header"> Welcome Student </h4>
@@ -55,41 +55,53 @@ include('../config/DbFunction.php');
 			</div>
 			<!-- /.row -->
 			<div class="row">
-			<div class="col-lg-12">
-			<div class="panel panel-default">
-			<div class="panel-heading">Register</div>
-			<div class="panel-body">
-			<div class="row">
-			<div class="col-lg-10">
-			<div class="form-group">
-		    <div class="col-lg-4">
-			<label>Select Course<span id="" style="font-size:11px;color:red">*</span>	</label>
-			</div>
-			<div class="col-lg-6">
-<select class="form-control" name="course-short" id="cshort"  onchange="showSub(this.value)" required="required" >			
-<option VALUE="">SELECT</option>
-				<?php while($res=$rs->fetch_object()){?>							
-			
-                        <option VALUE="<?php echo htmlentities($res->cid);?>"><?php echo htmlentities($res->cshort)?></option>
-                        
-                        
-                    <?php }?>   </select>
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Register</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-10">
+									<div class="form-group">
+		    							<div class="col-lg-4">
+											<label>Select Degree<span id="" style="font-size:11px;color:red">*</span>	</label>
 										</div>
-											
-										</div>	
-										
-								<br><br>
-								
-		<div class="form-group">
-		<div class="col-lg-4">
-		<label>Select Subject<span id="" style="font-size:11px;color:red">*</span></label>
-		</div>
-		<div class="col-lg-6">
- <input class="form-control" name="c-full"  id="c-full" >
-       </select>
-	</div>
-	 </div>	
-										
+										<div class="col-lg-6">
+											<select class="form-control" name="degree-short" id="dshort" required="required" >			
+												<option VALUE="">SELECT</option>
+												<?php while($res=$rsDeg->fetch_object()){?>
+												<option VALUE="<?php echo htmlentities($res->deg_id);?>">
+												<?php echo strtoupper(htmlentities($res->dshort))?></option><?php }?>
+											</select>
+										</div>
+									</div>	
+									<br><br>
+									<div class="form-group">
+		    							<div class="col-lg-4">
+											<label>Select Course<span id="" style="font-size:11px;color:red">*</span>	</label>
+										</div>
+										<div class="col-lg-6">
+											<select class="form-control" name="course-short" id="cshort" required="required" >			
+												<option VALUE="">SELECT</option>
+												<?php while($res=$rsCourse->fetch_object()){?>
+												<option VALUE="<?php echo htmlentities($res->crs_id);?>">
+												<?php echo strtoupper(htmlentities($res->cshort))?></option><?php }?>
+											</select>
+										</div>
+									</div>	
+									<br><br>
+									<div class="form-group">
+										<div class="col-lg-4">
+											<label>Add Subjects<span id="" style="font-size:11px;color:red">*</span></label>
+										</div>
+										<div class="col-lg-6">
+											<select class="form-control" name="subj-short" id="sshort" required="required" >			
+												<option VALUE="">SELECT</option>
+												<?php while($res=$rsSubj->fetch_object()){?>
+												<option VALUE="<?php echo htmlentities($res->subj_id);?>">
+												<?php echo strtoupper(htmlentities($res->sshort))?></option><?php }?>
+											</select>
+										</div>
+	 								</div>	
 	 <br><br>								
 			
 			<div class="form-group">
