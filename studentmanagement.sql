@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 19, 2021 at 02:47 AM
+-- Generation Time: Mar 27, 2021 at 12:58 AM
 -- Server version: 8.0.22
 -- PHP Version: 8.0.1
 
@@ -52126,12 +52126,9 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 --
 
 CREATE TABLE `subject` (
-  `subid` int NOT NULL,
-  `cshort` varchar(50) DEFAULT NULL,
-  `cfull` varchar(250) DEFAULT NULL,
-  `sub1` varchar(250) DEFAULT NULL,
-  `sub2` varchar(250) DEFAULT NULL,
-  `sub3` varchar(250) DEFAULT NULL,
+  `subj_id` int NOT NULL,
+  `sshort` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `sfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `dt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -52140,12 +52137,12 @@ CREATE TABLE `subject` (
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`subid`, `cshort`, `cfull`, `sub1`, `sub2`, `sub3`, `dt_created`, `update_date`) VALUES
-(3, '8', 'MASTER OF SCIENCE', 'Mathematics', 'Physics', 'Chemistry', '2016-04-16 18:08:27', NULL),
-(6, '10', 'BACHELOR OF TECHNOLOGY', 'Engineering Drawing', 'Computer Programming', 'Computer Science Essentials', '2016-04-16 19:51:43', NULL),
-(7, '12', 'Bachelor of Arts ', 'Economics', 'History', 'Geography', '2019-05-27 22:34:40', NULL),
-(8, '9', 'BACHELOR OF COMMERCE', 'test1', 'test2', 'test3', '2019-05-27 22:36:36', NULL),
-(9, '13', 'Master of Technology', 'Operating System', 'Data Structure', 'Netwoking', '2019-05-27 22:39:41', '27-05-2019');
+INSERT INTO `subject` (`subj_id`, `sshort`, `sfull`, `dt_created`, `update_date`) VALUES
+(1, 'C', 'Programming in C', '2016-04-16 18:08:27', NULL),
+(2, 'C++', 'Object Oriented Programming with C++', '2016-04-16 19:51:43', NULL),
+(3, 'DSA', 'Data Structures & Algorithm', '2019-05-27 22:34:40', NULL),
+(4, 'Algo', 'Design & Analysis of Algorithm', '2019-05-27 22:36:36', NULL),
+(5, 'OS', 'Operating Systems', '2019-05-27 22:39:41', '27-05-2019');
 
 -- --------------------------------------------------------
 
@@ -52154,10 +52151,10 @@ INSERT INTO `subject` (`subid`, `cshort`, `cfull`, `sub1`, `sub2`, `sub3`, `dt_c
 --
 
 CREATE TABLE `tbl_course` (
-  `cid` int NOT NULL,
-  `cshort` varchar(250) DEFAULT NULL,
-  `cfull` varchar(250) DEFAULT NULL,
-  `cdate` varchar(50) DEFAULT NULL,
+  `crs_id` int NOT NULL,
+  `cshort` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `cfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `cdate` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `update_date` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -52165,9 +52162,32 @@ CREATE TABLE `tbl_course` (
 -- Dumping data for table `tbl_course`
 --
 
-INSERT INTO `tbl_course` (`cid`, `cshort`, `cfull`, `cdate`, `update_date`) VALUES
+INSERT INTO `tbl_course` (`crs_id`, `cshort`, `cfull`, `cdate`, `update_date`) VALUES
+(1, 'CSE', 'Computer Science & Engineering', '', NULL),
+(2, 'ECE', 'Electronics & Communication Engineering', NULL, NULL),
+(3, 'IT', 'Information & Technology', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_degree`
+--
+
+CREATE TABLE `tbl_degree` (
+  `deg_id` int NOT NULL,
+  `dshort` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `dfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `ddate` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `update_date` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_degree`
+--
+
+INSERT INTO `tbl_degree` (`deg_id`, `dshort`, `dfull`, `ddate`, `update_date`) VALUES
 (7, 'M.C.A.', 'MASTER OF COMPUTER APPLICATION', '11-04-2016', '27-05-2019'),
-(8, 'M.S.C', 'MASTER OF SCIENCE', '11-04-2016', NULL),
+(8, 'M. S. C.', 'MASTER OF SCIENCE', '11-04-2016', NULL),
 (10, 'B.TECH', 'BACHELOR OF TECHNOLOGY', '12-04-2016', NULL),
 (13, 'M.Tech', 'Master of Technology', '27-05-2019', '27-05-2019');
 
@@ -52229,13 +52249,19 @@ ALTER TABLE `states`
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subid`);
+  ADD PRIMARY KEY (`subj_id`);
 
 --
 -- Indexes for table `tbl_course`
 --
 ALTER TABLE `tbl_course`
-  ADD PRIMARY KEY (`cid`);
+  ADD PRIMARY KEY (`crs_id`);
+
+--
+-- Indexes for table `tbl_degree`
+--
+ALTER TABLE `tbl_degree`
+  ADD PRIMARY KEY (`deg_id`);
 
 --
 -- Indexes for table `tbl_login`
@@ -52281,13 +52307,19 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `subj_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_course`
 --
 ALTER TABLE `tbl_course`
-  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `crs_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_degree`
+--
+ALTER TABLE `tbl_degree`
+  MODIFY `deg_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_login`
