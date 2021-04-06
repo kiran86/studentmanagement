@@ -216,71 +216,84 @@ include('../config/DbFunction.php');
 												<table class="table">
 													<thead>
 														<tr>
-															<div class="col-lg-6">
+															<div class="col-lg-3">
 																<th>S.No</th>
 															</div> 
-															<div class="col-lg-6">
+															<div class="col-lg-3">
 																<th>&nbsp;&nbsp;&nbsp;&nbsp;Subject</th>
 															</div>
-															<div class="col-lg-6">
+															<div class="col-lg-3">
 																<th>&nbsp;&nbsp;&nbsp;&nbsp;Marks Obtained</th>
 															</div>
-															<div class="col-lg-6">
+															<div class="col-lg-3">
 																<th>&nbsp;&nbsp;&nbsp;&nbsp;Full Marks</th>
 															</div>                               
 														</tr>
 													</thead>
 													<tbody>
-														<tr> 
-															<td>1</td>
+														<tr>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
+																	<label><span id="" style="color:grey">1</span></label>
+																</div>
+															</td>
+															</div>
+															<td>
+																<div class="col-lg-3">
 																	<label>Math<span id="" style="font-size:11px;color:red">*</span></label>
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="marks1">
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="fmarks1">
 																</div>
 															</td>
 														</tr>
 														<tr> 
-															<td>2</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
+																	<label><span id="" style="color:grey">2</span></label>
+																</div>
+															</td>
+															<td>
+																<div class="col-lg-3">
 																	<label>Physics<span id="" style="font-size:11px;color:red">*</span></label>
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="marks2">
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="fmarks2">
 																</div>
 															</td>
 														</tr>
 														<tr> 
-															<td>3</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
+																	<label><span id="" style="color:grey">3</span></label>
+																</div>
+															</td>
+															<td>
+																<div class="col-lg-3">
 																	<label>Eng<span id="" style="font-size:11px;color:red">*</span></label>
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="marks3">
 																</div>
 															</td>
 															<td>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<input class="form-control"  type="text" name="fmarks3">
 																</div>
 															</td>
@@ -295,8 +308,7 @@ include('../config/DbFunction.php');
 						</div>
 					</div>
 				</div>
-			</div>
-								<br>
+			</div><!--
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="form-group">
@@ -307,15 +319,15 @@ include('../config/DbFunction.php');
 											</div>
 										</div>			
 									</div>
-								</div><!--row!-->
+								</div>
 							</div>	
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
-	</form>
+</form>
 
 	<!-- jQuery -->
 	<script src="../bower_components/jquery/dist/jquery.min.js"
