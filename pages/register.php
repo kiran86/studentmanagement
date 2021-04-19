@@ -4,22 +4,15 @@ include('../config/DbFunction.php');
 	$rsDeg = $obj->showAllDegree();
 	$rsCourse=$obj->showAllCourse();
 	$rsSubj = $obj->showAllSubject();
-	$rs1=$obj->showCountry();
-	$ses=$obj->showSession();
-	$res1=$ses->fetch_object();
-	//$res1->session;
+	
 	if(isset($_POST['submit'])){
 	
      
-     $obj->register($_POST['course-short'],$_POST['c-full'],$_POST['fname'],$_POST['mname'],$_POST['lname'],
-     	            $_POST['gname'],$_POST['ocp'],$_POST['gender'],$_POST['income'],$_POST['category'],$_POST['ph'],$_POST['nation']
-
-     	             , $_POST['mobno'],$_POST['email'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['padd'],
-     	              $_POST['cadd'],$_POST['board1'],$_POST['board2'],$_POST['roll1'],$_POST['roll2'],$_POST['pyear1'],
-     	              $_POST['pyear2'],$_POST['sub1'],$_POST['sub2'],$_POST['marks1'],$_POST['marks2'],$_POST['fmarks1'],
-     	              $_POST['fmarks2'] ,$_POST['session']);
-	
-}
+    $obj->register($_POST['degree'],$_POST['course'],$_POST['subj_ids'], $_POST['admdate'],
+	 				$_POST['fname'],$_POST['mname'],$_POST['lname'],$_POST['gender'],$_POST['gname'],
+     	            $_POST['mobno'],$_POST['email'],$_POST['padd'], $_POST['marks1'],$_POST['fmarks1'],
+     	            $_POST['marks2'],$_POST['fmarks2'],$_POST['marks3'],$_POST['fmarks3']);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +61,7 @@ include('../config/DbFunction.php');
 											<label>Select Degree<span id="" style="font-size:11px;color:red">*</span>	</label>
 										</div>
 										<div class="col-lg-6">
-											<select class="form-control" name="degree-short" id="dshort" required="required" >			
+											<select class="form-control" name="degree" id="degree" required="required" >			
 												<option VALUE="">SELECT</option>
 												<?php while($res=$rsDeg->fetch_object()){?>
 												<option VALUE="<?php echo htmlentities($res->deg_id);?>">
@@ -82,7 +75,7 @@ include('../config/DbFunction.php');
 											<label>Select Course<span id="" style="font-size:11px;color:red">*</span>	</label>
 										</div>
 										<div class="col-lg-6">
-											<select class="form-control" name="course-short" id="cshort" required="required" >			
+											<select class="form-control" name="course" id="course" required="required" >			
 												<option VALUE="">SELECT</option>
 												<?php while($res=$rsCourse->fetch_object()){?>
 												<option VALUE="<?php echo htmlentities($res->crs_id);?>">
@@ -96,7 +89,7 @@ include('../config/DbFunction.php');
 											<label>Add Subjects<span id="" style="font-size:11px;color:red">*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="form-control" name="subj-short" id="sshort" required="required" onchange="addSubject(this)">			
+											<select class="form-control" name="subj-short" id="sshort" onchange="addSubject(this)">			
 												<option VALUE="">SELECT</option>
 												<?php while($res=$rsSubj->fetch_object()){?>
 												<option VALUE="<?php echo htmlentities($res->subj_id);?>">
@@ -111,6 +104,7 @@ include('../config/DbFunction.php');
 										</div>
 										<div class="col-lg-6">
 											<div class="btn-group" id="subjects" role="group" aria-label="Basic example">
+											<input type="hidden" id="subj_ids" name="subj_ids" >
 											</div>
 										</div>
 									</div>
@@ -121,7 +115,7 @@ include('../config/DbFunction.php');
 										</div>
 										<div class="col-lg-6">
 											<div class="input-group date">
-												<input type="text" class="form-control" id="admdate"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+												<input type="text" class="form-control" id="admdate" name="admdate"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 											</div>
 										</div>
 									</div>
@@ -173,7 +167,7 @@ include('../config/DbFunction.php');
 												<label>Guardian Name<span id="" style="font-size:11px;color:red">*</span>	</label>
 											</div>
 											<div class="col-lg-3">
-												<input class="form-control" name="gname" required="required" pattern="[A-Za-z]+$">
+												<input class="form-control" name="gname" required="required" pattern="[A-Za-z ]+$">
 											</div>
 									</div>
 								</div>
@@ -194,7 +188,7 @@ include('../config/DbFunction.php');
 											<label>Mobile Number<span id="" style="font-size:11px;color:red">*</span>	</label>
 										</div>
 										<div class="col-lg-3">
-											<input class="form-control" type="number" name="mobno" required="required" maxlength="10">
+											<input class="form-control" type="tel" name="mobno" required="required" maxlength="10">
 										</div>
 										<div class="col-lg-1">
 											<label>Email Id<span id="" style="font-size:11px;color:red">*</span>	</label>
@@ -353,7 +347,7 @@ include('../config/DbFunction.php');
 <!-- JQuery UI -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-
+var subj_ids = [];
 $(document).ready(function(){
 	$('#admdate').datepicker({
 		dateFormat: "dd-mm-yy",
@@ -364,29 +358,29 @@ $(document).ready(function(){
 
 function showState(val) {
     
-  	$.ajax({
-	type: "POST",
-	url: "subject.php",
-	data:'id='+val,
-	success: function(data){
-	  // alert(data);
-		$("#state").html(data);
-	}
-	});
+	$.ajax({
+  type: "POST",
+  url: "subject.php",
+  data:'id='+val,
+  success: function(data){
+	// alert(data);
+	  $("#state").html(data);
+  }
+  });
 }
 
 function showDist(val) {
-    
-  	$.ajax({
-	type: "POST",
-	url: "subject.php",
-	data:'did='+val,
-	success: function(data){
-	  // alert(data);
-		$("#dist").html(data);
-	}
-	});
-	
+  
+	$.ajax({
+  type: "POST",
+  url: "subject.php",
+  data:'did='+val,
+  success: function(data){
+	// alert(data);
+	  $("#dist").html(data);
+  }
+  });
+  
 }
 
 function addSubject(sel) {
@@ -399,6 +393,9 @@ function addSubject(sel) {
 	button.addEventListener("click", function() {removeSubject(this)});
 	document.getElementById("subjects").appendChild(button);
 	sel.options[sel.selectedIndex].remove();
+	subj_ids.push(button.value);
+	document.getElementById("subj_ids").value = subj_ids.join(',');
+	//alert(subj_ids.join("\n"));
 }
 
 function removeSubject(btn) {
@@ -407,7 +404,13 @@ function removeSubject(btn) {
 	option.text = btn.innerText;
 	//alert(btn.value + " " + btn.innerText);
 	document.getElementById("sshort").options.add(option);
+	var i = subj_ids.indexOf(btn.value);
+	if(i != -1) {
+		subj_ids.splice(i, 1);
+	}
+	document.getElementById("subj_ids").value = subj_ids.join(',');
 	btn.remove();
+	//alert(subj_ids);
 }
 
 function showSub(val) {
