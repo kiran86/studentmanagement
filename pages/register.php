@@ -37,15 +37,17 @@ include('../config/DbFunction.php');
 <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 <link href="../bower_components/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
+<!-- JQuery UI -->
+<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 </head>
 
 <body>
 <form method="post" >
 	<div id="wrapper">
-	<nav class="navbar navbar-default navbar-static-top" role="navigation"
-		style="margin-bottom: 0; background-color: #e3f2fd;">
-		<a class="navbar-brand" href="..\index.php">Student Management System</a>
-    </nav>
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0; background-color: #e3f2fd;">
+			<a class="navbar-brand" href="..\index.php">Student Management System</a>
+		</nav>
 		<div id="page-wrapper" style="margin: 0 0 0 0;">
 			<div class="row">
 				<div class="col-lg-12">
@@ -113,6 +115,16 @@ include('../config/DbFunction.php');
 										</div>
 									</div>
 									<br><br>
+									<div class="form-group">
+										<div class="col-lg-4">
+											<label>Admission Date:<span id="" style="font-size:11px;color:red">*</span></label>
+										</div>
+										<div class="col-lg-6">
+											<div class="input-group date">
+												<input type="text" class="form-control" id="admdate"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+											</div>
+										</div>
+									</div>
 								</div>
 								<br><br>
 							</div>
@@ -174,28 +186,27 @@ include('../config/DbFunction.php');
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Contact Informations</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<div class="col-lg-1">
-												<label>Mobile Number<span id="" style="font-size:11px;color:red">*</span>	</label>
-											</div>
-											<div class="col-lg-3">
-												<input class="form-control" type="number" name="mobno" required="required" maxlength="10">
-											</div>
-											<div class="col-lg-1">
-												<label>Email Id<span id="" style="font-size:11px;color:red">*</span>	</label>
-											</div>
-											<div class="col-lg-3">
-												<input class="form-control"  type="email" name="email"  required="required">
-											</div>
-											<div class="col-lg-1">
-												<label>Address<span id="" style="font-size:11px;color:red">*</span></label>
-											</div>
-											<div class="col-lg-3">
-												<textarea class="form-control" rows="3" name="padd" id="padd"></textarea>
-											</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="col-lg-1">
+											<label>Mobile Number<span id="" style="font-size:11px;color:red">*</span>	</label>
+										</div>
+										<div class="col-lg-3">
+											<input class="form-control" type="number" name="mobno" required="required" maxlength="10">
+										</div>
+										<div class="col-lg-1">
+											<label>Email Id<span id="" style="font-size:11px;color:red">*</span>	</label>
+										</div>
+										<div class="col-lg-3">
+											<input class="form-control"  type="email" name="email"  required="required">
+										</div>
+										<div class="col-lg-1">
+											<label>Address<span id="" style="font-size:11px;color:red">*</span></label>
+										</div>
+										<div class="col-lg-3">
+											<textarea class="form-control" rows="3" name="padd" id="padd"></textarea>
 										</div>
 									</div>
 								</div>
@@ -204,147 +215,153 @@ include('../config/DbFunction.php');
 					</div>
 				</div>
 			</div>
-        	<div class="row">
+			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Academic Informations</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<div class="table-responsive">
-												<table class="table">
-													<thead>
-														<tr>
-															<div class="col-lg-3">
-																<th>S.No</th>
-															</div> 
-															<div class="col-lg-3">
-																<th>&nbsp;&nbsp;&nbsp;&nbsp;Subject</th>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="table-responsive">
+											<table class="table">
+											<thead>
+													<tr>
+														<div class="col-lg-6">
+															<th>S.No</th>
+														</div> 
+														<div class="col-lg-6">
+															<th>&nbsp;&nbsp;&nbsp;&nbsp;Subject</th>
+														</div>
+														<div class="col-lg-6">
+															<th>&nbsp;&nbsp;&nbsp;&nbsp;Marks Obtained</th>
+														</div>
+														<div class="col-lg-6">
+															<th>&nbsp;&nbsp;&nbsp;&nbsp;Full Marks</th>
+														</div>                               
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<div class="col-lg-6">
+																<label><span id="" style="color:grey">1</span></label>
 															</div>
-															<div class="col-lg-3">
-																<th>&nbsp;&nbsp;&nbsp;&nbsp;Marks Obtained</th>
+														</td>
+														</div>
+														<td>
+															<div class="col-lg-6">
+																<label>Math<span id="" style="font-size:11px;color:red">*</span></label>
 															</div>
-															<div class="col-lg-3">
-																<th>&nbsp;&nbsp;&nbsp;&nbsp;Full Marks</th>
-															</div>                               
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<div class="col-lg-3">
-																	<label><span id="" style="color:grey">1</span></label>
-																</div>
-															</td>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="marks1">
 															</div>
-															<td>
-																<div class="col-lg-3">
-																	<label>Math<span id="" style="font-size:11px;color:red">*</span></label>
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="marks1">
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="fmarks1">
-																</div>
-															</td>
-														</tr>
-														<tr> 
-															<td>
-																<div class="col-lg-3">
-																	<label><span id="" style="color:grey">2</span></label>
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<label>Physics<span id="" style="font-size:11px;color:red">*</span></label>
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="marks2">
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="fmarks2">
-																</div>
-															</td>
-														</tr>
-														<tr> 
-															<td>
-																<div class="col-lg-3">
-																	<label><span id="" style="color:grey">3</span></label>
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<label>Eng<span id="" style="font-size:11px;color:red">*</span></label>
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="marks3">
-																</div>
-															</td>
-															<td>
-																<div class="col-lg-3">
-																	<input class="form-control"  type="text" name="fmarks3">
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="fmarks1">
+															</div>
+														</td>
+													</tr>
+													<tr> 
+														<td>
+															<div class="col-lg-6">
+																<label><span id="" style="color:grey">2</span></label>
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<label>Physics<span id="" style="font-size:11px;color:red">*</span></label>
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="marks2">
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="fmarks2">
+															</div>
+														</td>
+													</tr>
+													<tr> 
+														<td>
+															<div class="col-lg-6">
+																<label><span id="" style="color:grey">3</span></label>
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<label>Eng<span id="" style="font-size:11px;color:red">*</span></label>
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="marks3">
+															</div>
+														</td>
+														<td>
+															<div class="col-lg-6">
+																<input class="form-control"  type="text" name="fmarks3">
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
-			</div><!--
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<div class="col-lg-4">
-											</div>
-											<div class="col-lg-6"><br><br>
-												<input type="submit" class="btn btn-primary" name="submit" value="Register"></button>
-											</div>
-										</div>			
-									</div>
-								</div>
-							</div>	
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<div class="col-lg-6">
 						</div>
-					</div>
+						<div class="col-lg-6"><br><br>
+							<input type="submit" class="btn btn-primary" name="submit" value="Register"></button>
+						</div>
+					</div>			
 				</div>
-			</div>-->
+			</div>
+			<br><br>
 		</div>
 	</div>
 </form>
 
-	<!-- jQuery -->
-	<script src="../bower_components/jquery/dist/jquery.min.js"
-		type="text/javascript"></script>
+<!-- jQuery -->
+<script src="../bower_components/jquery/dist/jquery.min.js"
+	type="text/javascript"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"
-		type="text/javascript"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"
+	type="text/javascript"></script>
 
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../bower_components/metisMenu/dist/metisMenu.min.js"
-		type="text/javascript"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../bower_components/metisMenu/dist/metisMenu.min.js"
+	type="text/javascript"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js" type="text/javascript"></script>
-	
-	<script>
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js" type="text/javascript"></script>
+
+<!-- JQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('#admdate').datepicker({
+		dateFormat: "dd-mm-yy",
+		maxDate: "0d",
+		showButtonPanel: "true"
+	});
+});
+
 function showState(val) {
     
   	$.ajax({
@@ -407,7 +424,6 @@ function showSub(val) {
 	});
 	
 }
-
 </script>
 
 
