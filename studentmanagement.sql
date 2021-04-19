@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 27, 2021 at 12:58 AM
--- Server version: 8.0.22
--- PHP Version: 8.0.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 19, 2021 at 06:26 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cities` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `state_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `state_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cities`
@@ -47645,10 +47645,10 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 --
 
 CREATE TABLE `countries` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `sortname` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countries`
@@ -47905,66 +47905,15 @@ INSERT INTO `countries` (`id`, `sortname`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registration`
---
-
-CREATE TABLE `registration` (
-  `course` varchar(250) NOT NULL,
-  `subject` varchar(250) NOT NULL,
-  `fname` varchar(250) NOT NULL,
-  `mname` varchar(250) NOT NULL,
-  `lname` varchar(250) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `gname` varchar(250) NOT NULL,
-  `ocp` varchar(50) NOT NULL,
-  `income` varchar(250) NOT NULL,
-  `category` varchar(250) NOT NULL,
-  `pchal` varchar(250) NOT NULL,
-  `nationality` varchar(250) NOT NULL,
-  `mobno` varchar(50) NOT NULL,
-  `emailid` varchar(250) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `dist` varchar(50) NOT NULL,
-  `padd` text NOT NULL,
-  `cadd` text NOT NULL,
-  `board` varchar(50) NOT NULL,
-  `roll` varchar(50) NOT NULL,
-  `pyear` varchar(50) NOT NULL,
-  `sub` varchar(250) NOT NULL,
-  `marks` bigint NOT NULL,
-  `fmarks` bigint NOT NULL,
-  `board1` varchar(250) NOT NULL,
-  `roll1` varchar(250) NOT NULL,
-  `yop1` varchar(250) NOT NULL,
-  `sub1` varchar(250) NOT NULL,
-  `session` varchar(250) NOT NULL,
-  `regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `marks1` varchar(50) NOT NULL,
-  `fmarks1` varchar(50) NOT NULL,
-  `regno` varchar(250) NOT NULL,
-  `id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `registration`
---
-
-INSERT INTO `registration` (`course`, `subject`, `fname`, `mname`, `lname`, `gender`, `gname`, `ocp`, `income`, `category`, `pchal`, `nationality`, `mobno`, `emailid`, `country`, `state`, `dist`, `padd`, `cadd`, `board`, `roll`, `pyear`, `sub`, `marks`, `fmarks`, `board1`, `roll1`, `yop1`, `sub1`, `session`, `regdate`, `marks1`, `fmarks1`, `regno`, `id`) VALUES
-('13', 'OPERATING SYSTEM+DATA STRUCTURE+ NETWOKING', 'Anuj', 'Kumar', 'Singh', 'Male', 'IT Service', 'Male', '500000', 'general', 'general', 'Indian', '1234567890', 'phpgurukulofficial@gmail.com', '101', '4', '', 'Mayur Vihar', 'Mayur Vihar', '10 UP Board', '12 UP Board', '123456', '654332', 2010, 2012, 'Hindi', 'English', '80', '60', '2010-2011', '2019-05-27 17:11:59', '100', '100', '1307692170', 3);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `session`
 --
 
 CREATE TABLE `session` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `session` varchar(50) NOT NULL,
   `postingdate` date NOT NULL,
-  `status` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `session`
@@ -47988,10 +47937,10 @@ INSERT INTO `session` (`id`, `session`, `postingdate`, `status`) VALUES
 --
 
 CREATE TABLE `states` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `country_id` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `country_id` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `states`
@@ -52122,16 +52071,49 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `deg_id` int(11) NOT NULL,
+  `crs_id` int(11) NOT NULL,
+  `adm_dt` date NOT NULL,
+  `fname` varchar(250) NOT NULL,
+  `mname` varchar(250) NOT NULL,
+  `lname` varchar(250) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  `gname` varchar(250) NOT NULL,
+  `mobno` varchar(50) NOT NULL,
+  `emailid` varchar(250) NOT NULL,
+  `addr` varchar(255) NOT NULL,
+  `marks_math` int(20) NOT NULL,
+  `fmark_math` int(20) NOT NULL,
+  `marks_phys` int(20) NOT NULL,
+  `fmark_phys` int(20) NOT NULL,
+  `regno` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `deg_id`, `crs_id`, `adm_dt`, `fname`, `mname`, `lname`, `gender`, `gname`, `mobno`, `emailid`, `addr`, `marks_math`, `fmark_math`, `marks_phys`, `fmark_phys`, `regno`) VALUES
+(3, 0, 13, '0000-00-00', 'Anuj', 'Kumar', 'Singh', 'Male', 'IT Service', '1234567890', 'phpgurukulofficial@gmail.com', 'Mayur Vihar', 2010, 2012, 100, 100, '1307692170');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subject`
 --
 
 CREATE TABLE `subject` (
-  `subj_id` int NOT NULL,
-  `sshort` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `sfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `dt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `subj_id` int(11) NOT NULL,
+  `sshort` varchar(50) DEFAULT NULL,
+  `sfull` varchar(250) DEFAULT NULL,
+  `dt_created` datetime NOT NULL DEFAULT current_timestamp(),
   `update_date` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subject`
@@ -52151,12 +52133,12 @@ INSERT INTO `subject` (`subj_id`, `sshort`, `sfull`, `dt_created`, `update_date`
 --
 
 CREATE TABLE `tbl_course` (
-  `crs_id` int NOT NULL,
-  `cshort` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `cfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `cdate` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `crs_id` int(11) NOT NULL,
+  `cshort` varchar(250) DEFAULT NULL,
+  `cfull` varchar(250) DEFAULT NULL,
+  `cdate` varchar(50) DEFAULT NULL,
   `update_date` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_course`
@@ -52174,12 +52156,12 @@ INSERT INTO `tbl_course` (`crs_id`, `cshort`, `cfull`, `cdate`, `update_date`) V
 --
 
 CREATE TABLE `tbl_degree` (
-  `deg_id` int NOT NULL,
-  `dshort` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `dfull` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `ddate` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `deg_id` int(11) NOT NULL,
+  `dshort` varchar(250) DEFAULT NULL,
+  `dfull` varchar(250) DEFAULT NULL,
+  `ddate` varchar(50) DEFAULT NULL,
   `update_date` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_degree`
@@ -52198,10 +52180,10 @@ INSERT INTO `tbl_degree` (`deg_id`, `dshort`, `dfull`, `ddate`, `update_date`) V
 --
 
 CREATE TABLE `tbl_login` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `loginid` varchar(250) NOT NULL,
-  `password` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_login`
@@ -52228,12 +52210,6 @@ ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `registration`
---
-ALTER TABLE `registration`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
@@ -52244,6 +52220,13 @@ ALTER TABLE `session`
 --
 ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `subject`
@@ -52277,55 +52260,55 @@ ALTER TABLE `tbl_login`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47577;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47577;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
-
---
--- AUTO_INCREMENT for table `registration`
---
-ALTER TABLE `registration`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subj_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `subj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_course`
 --
 ALTER TABLE `tbl_course`
-  MODIFY `crs_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `crs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_degree`
 --
 ALTER TABLE `tbl_degree`
-  MODIFY `deg_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `deg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
