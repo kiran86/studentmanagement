@@ -9,7 +9,7 @@ include('../config/DbFunction.php');
 	
      
     $obj->register($_POST['degree'],$_POST['course'],$_POST['subj_ids'], $_POST['admdate'],
-	 				$_POST['fname'],$_POST['mname'],$_POST['lname'],$_POST['gender'],$_POST['gname'],
+	 				$_POST['fname'],$_POST['mname'],$_POST['lname'],$_POST['gender'], $_POST['dob'], $_POST['gname'],
      	            $_POST['mobno'],$_POST['email'],$_POST['padd'], $_POST['marks1'],$_POST['fmarks1'],
      	            $_POST['marks2'],$_POST['fmarks2'],$_POST['marks3'],$_POST['fmarks3']);
 	}
@@ -115,7 +115,7 @@ include('../config/DbFunction.php');
 										</div>
 										<div class="col-lg-6">
 											<div class="input-group date">
-												<input type="text" class="form-control" id="admdate" name="admdate"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+												<input type="text" class="form-control" id="admdate" name="admdate" required="required"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 											</div>
 										</div>
 									</div>
@@ -147,21 +147,29 @@ include('../config/DbFunction.php');
 												<input class="form-control" name="mname">
 											</div>
 											<div class="col-lg-1">
-												<label>Last Name</label>
+												<label>Last Name<span id="" style="font-size:11px;color:red">*</span></label>
 											</div>
 											<div class="col-lg-3">
-												<input class="form-control" name="lname" pattern="[A-Za-z]+$">
+												<input class="form-control" name="lname" required="required" pattern="[A-Za-z]+$">
 											</div>
 										</div>	
 										<br><br>					
 										<div class="form-group">
 			 								<div class="col-lg-1">
-												<label>Gender</label>
+												<label>Gender<span id="" style="font-size:11px;color:red">*</span></label>
 											</div>
 											<div class="col-lg-3">
 												<input type="radio" name="gender" id="male" value="Male"> &nbsp; Male &nbsp;
 												<input type="radio" name="gender" id="female" value="Feale"> &nbsp; Female &nbsp;
 												<input type="radio" name="gender" id="other" value="Other"> &nbsp; Other &nbsp;
+											</div>
+											<div class="col-lg-1">
+												<label>Date of Birth<span id="" style="font-size:11px;color:red">*</span></label>
+											</div>
+											<div class="col-lg-3">
+												<div class="input-group date">
+													<input type="text" class="form-control" id="dob" name="dob" required="required"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+												</div>
 											</div>
 											<div class="col-lg-1">
 												<label>Guardian Name<span id="" style="font-size:11px;color:red">*</span>	</label>
@@ -350,6 +358,11 @@ include('../config/DbFunction.php');
 var subj_ids = [];
 $(document).ready(function(){
 	$('#admdate').datepicker({
+		dateFormat: "dd-mm-yy",
+		maxDate: "0d",
+		showButtonPanel: "true"
+	});
+	$('#dob').datepicker({
 		dateFormat: "dd-mm-yy",
 		maxDate: "0d",
 		showButtonPanel: "true"

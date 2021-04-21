@@ -167,26 +167,38 @@ class DbFunction{
 		
 	}	
 
-	function register($degree, $course, $subj_ids, $admdate, $fname,$mname,$lname,$gender,$gname,
+	function register($degree, $course, $subj_ids, $admdate, $fname,$mname,$lname,$gender,$dob,$gname,
 					$mobno,$email,$padd,$marks1,$fmarks1,$marks2,$fmarks2,$marks3,$fmarks3) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
 		//	echo $session;exit;
-		$query = "INSERT INTO `student` (`std_id`, `deg_id`, `crs_id`, `adm_dt`, `fname`, `mname`, `lname`, `gender`, `gname`, 
-											`mobno`, `emailid`, `addr`, `marks_math`, `fmark_math`, `marks_phys`, `fmark_phys`,
-											`marks_eng`, `fmark_eng`) 
-				VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$query = "INSERT INTO `student` (`std_id`, `deg_id`, `crs_id`, `adm_dt`, `fname`, `mname`, `lname`, `gender`, `dob`,
+											`gname`, `mobno`, `emailid`, `addr`, `marks_math`, `fmark_math`, `marks_phys`,
+											`fmark_phys`, `marks_eng`, `fmark_eng`) 
+				VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		$stmt= $mysqli->prepare($query);
 		if(false===$stmt){
 			trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
 		} else {
 			$std_id = uniqid();
+			$uid = strtolower($fname)."_".substr($mobno, -3);
+			$pass = substr(strtoupper($fname), 0, 1).strtolower($lname)."#".str_replace("-","",$dob);
 			$admdate = date('Y/m/d', strtotime($admdate));
-			$stmt->bind_param('sddsssssssssdddddd',
-				$std_id,$degree,$course,$admdate, $fname,$mname,$lname,$gender,$gname,$mobno,$email,$padd,
+			$dob = date('Y/m/d', strtotime($dob));
+			$stmt->bind_param('sddssssssssssdddddd',
+				$std_id,$degree,$course,$admdate, $fname,$mname,$lname,$gender,$dob,$gname,$mobno,$email,$padd,
 				$marks1,$fmarks1,$marks2,$fmarks2,$marks3,$fmarks3);
 			if ($stmt->execute() == true) {
-				echo "<script>alert('Successfully Registered , your registration number is $std_id')</script>";
+				$query = "INSERT INTO `tbl_login` (`std_id`, `loginid`, `password`) VALUES (?,?,?)";
+				$stmt = $mysqli->prepare($query);
+				if(false === $stmt) {
+					trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
+				} else {
+					$stmt->bind_param('sss', $std_id, $uid, $pass);
+				}
+				if ($stmt->execute() == true) {
+					echo "<script>alert('Successfully Registered.\\nUser ID: $uid\\nPassword:$pass')</script>";
+				}
 				//header('location:login.php');
 				$arr_sub_id = explode(",", $subj_ids);
 				foreach ($arr_sub_id as $sub) {
