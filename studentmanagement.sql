@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 06:26 AM
+-- Generation Time: Apr 21, 2021 at 11:00 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -52075,7 +52075,7 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 --
 
 CREATE TABLE `student` (
-  `id` int(11) NOT NULL,
+  `std_id` varchar(25) NOT NULL,
   `deg_id` int(11) NOT NULL,
   `crs_id` int(11) NOT NULL,
   `adm_dt` date NOT NULL,
@@ -52083,6 +52083,7 @@ CREATE TABLE `student` (
   `mname` varchar(250) NOT NULL,
   `lname` varchar(250) NOT NULL,
   `gender` varchar(50) NOT NULL,
+  `dob` date NOT NULL,
   `gname` varchar(250) NOT NULL,
   `mobno` varchar(50) NOT NULL,
   `emailid` varchar(250) NOT NULL,
@@ -52091,40 +52092,35 @@ CREATE TABLE `student` (
   `fmark_math` int(20) NOT NULL,
   `marks_phys` int(20) NOT NULL,
   `fmark_phys` int(20) NOT NULL,
-  `regno` varchar(250) NOT NULL
+  `marks_eng` int(20) NOT NULL,
+  `fmark_eng` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `deg_id`, `crs_id`, `adm_dt`, `fname`, `mname`, `lname`, `gender`, `gname`, `mobno`, `emailid`, `addr`, `marks_math`, `fmark_math`, `marks_phys`, `fmark_phys`, `regno`) VALUES
-(3, 0, 13, '0000-00-00', 'Anuj', 'Kumar', 'Singh', 'Male', 'IT Service', '1234567890', 'phpgurukulofficial@gmail.com', 'Mayur Vihar', 2010, 2012, 100, 100, '1307692170');
+INSERT INTO `student` (`std_id`, `deg_id`, `crs_id`, `adm_dt`, `fname`, `mname`, `lname`, `gender`, `dob`, `gname`, `mobno`, `emailid`, `addr`, `marks_math`, `fmark_math`, `marks_phys`, `fmark_phys`, `marks_eng`, `fmark_eng`) VALUES
+('607fe919c5211', 3, 2, '2021-04-01', 'Kiran', 'Sankar', 'Das', 'Male', '1986-08-21', 'Shib Sankar Das', '9477465888', 'kiran.sankar.das@gmail.com', 'Gayeshpur', 93, 100, 98, 100, 82, 100);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Table structure for table `subjects`
 --
 
-CREATE TABLE `subject` (
+CREATE TABLE `subjects` (
   `subj_id` int(11) NOT NULL,
-  `sshort` varchar(50) DEFAULT NULL,
-  `sfull` varchar(250) DEFAULT NULL,
-  `dt_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `update_date` varchar(200) DEFAULT NULL
+  `std_id` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `subject`
+-- Dumping data for table `subjects`
 --
 
-INSERT INTO `subject` (`subj_id`, `sshort`, `sfull`, `dt_created`, `update_date`) VALUES
-(1, 'C', 'Programming in C', '2016-04-16 18:08:27', NULL),
-(2, 'C++', 'Object Oriented Programming with C++', '2016-04-16 19:51:43', NULL),
-(3, 'DSA', 'Data Structures & Algorithm', '2019-05-27 22:34:40', NULL),
-(4, 'Algo', 'Design & Analysis of Algorithm', '2019-05-27 22:36:36', NULL),
-(5, 'OS', 'Operating Systems', '2019-05-27 22:39:41', '27-05-2019');
+INSERT INTO `subjects` (`subj_id`, `std_id`) VALUES
+(2, '607fe919c5211'),
+(4, '607fe919c5211');
 
 -- --------------------------------------------------------
 
@@ -52135,19 +52131,19 @@ INSERT INTO `subject` (`subj_id`, `sshort`, `sfull`, `dt_created`, `update_date`
 CREATE TABLE `tbl_course` (
   `crs_id` int(11) NOT NULL,
   `cshort` varchar(250) DEFAULT NULL,
-  `cfull` varchar(250) DEFAULT NULL,
-  `cdate` varchar(50) DEFAULT NULL,
-  `update_date` varchar(200) DEFAULT NULL
+  `cfull` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_course`
 --
 
-INSERT INTO `tbl_course` (`crs_id`, `cshort`, `cfull`, `cdate`, `update_date`) VALUES
-(1, 'CSE', 'Computer Science & Engineering', '', NULL),
-(2, 'ECE', 'Electronics & Communication Engineering', NULL, NULL),
-(3, 'IT', 'Information & Technology', NULL, NULL);
+INSERT INTO `tbl_course` (`crs_id`, `cshort`, `cfull`) VALUES
+(1, 'CSE', 'Computer Science & Engineering'),
+(2, 'ECE', 'Electronics & Communication Engineering'),
+(3, 'IT', 'Information & Technology'),
+(4, 'OTHER', 'OTHER'),
+(5, 'EE', 'Electrical Engineering');
 
 -- --------------------------------------------------------
 
@@ -52158,20 +52154,20 @@ INSERT INTO `tbl_course` (`crs_id`, `cshort`, `cfull`, `cdate`, `update_date`) V
 CREATE TABLE `tbl_degree` (
   `deg_id` int(11) NOT NULL,
   `dshort` varchar(250) DEFAULT NULL,
-  `dfull` varchar(250) DEFAULT NULL,
-  `ddate` varchar(50) DEFAULT NULL,
-  `update_date` varchar(200) DEFAULT NULL
+  `dfull` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_degree`
 --
 
-INSERT INTO `tbl_degree` (`deg_id`, `dshort`, `dfull`, `ddate`, `update_date`) VALUES
-(7, 'M.C.A.', 'MASTER OF COMPUTER APPLICATION', '11-04-2016', '27-05-2019'),
-(8, 'M. S. C.', 'MASTER OF SCIENCE', '11-04-2016', NULL),
-(10, 'B.TECH', 'BACHELOR OF TECHNOLOGY', '12-04-2016', NULL),
-(13, 'M.Tech', 'Master of Technology', '27-05-2019', '27-05-2019');
+INSERT INTO `tbl_degree` (`deg_id`, `dshort`, `dfull`) VALUES
+(1, 'M.C.A.', 'MASTER OF COMPUTER APPLICATION'),
+(2, 'M. S. C.', 'MASTER OF SCIENCE'),
+(3, 'B.TECH', 'BACHELOR OF TECHNOLOGY'),
+(4, 'M.Tech', 'Master of Technology'),
+(6, 'BSC', 'Bachelor of Science'),
+(14, 'OTHER', 'OTHER');
 
 -- --------------------------------------------------------
 
@@ -52180,7 +52176,7 @@ INSERT INTO `tbl_degree` (`deg_id`, `dshort`, `dfull`, `ddate`, `update_date`) V
 --
 
 CREATE TABLE `tbl_login` (
-  `id` int(11) NOT NULL,
+  `std_id` varchar(25) NOT NULL,
   `loginid` varchar(250) NOT NULL,
   `password` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52189,9 +52185,34 @@ CREATE TABLE `tbl_login` (
 -- Dumping data for table `tbl_login`
 --
 
-INSERT INTO `tbl_login` (`id`, `loginid`, `password`) VALUES
-(1, 'admin', 'admin'),
-(2, 'riya', 'passwd');
+INSERT INTO `tbl_login` (`std_id`, `loginid`, `password`) VALUES
+('1', 'admin', 'admin'),
+('607fe919c5211', 'kiran_888', 'Kdas#21081986');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_subject`
+--
+
+CREATE TABLE `tbl_subject` (
+  `subj_id` int(11) NOT NULL,
+  `sshort` varchar(50) DEFAULT NULL,
+  `sfull` varchar(250) DEFAULT NULL,
+  `dt_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_date` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_subject`
+--
+
+INSERT INTO `tbl_subject` (`subj_id`, `sshort`, `sfull`, `dt_created`, `update_date`) VALUES
+(1, 'C', 'Programming in C', '2016-04-16 18:08:27', NULL),
+(2, 'C++', 'Object Oriented Programming with C++', '2016-04-16 19:51:43', NULL),
+(3, 'DSA', 'Data Structures & Algorithm', '2019-05-27 22:34:40', NULL),
+(4, 'Algo', 'Design & Analysis of Algorithm', '2019-05-27 22:36:36', NULL),
+(5, 'OS', 'Operating Systems', '2019-05-27 22:39:41', '27-05-2019');
 
 --
 -- Indexes for dumped tables
@@ -52225,14 +52246,15 @@ ALTER TABLE `states`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
+  ADD PRIMARY KEY (`std_id`),
+  ADD UNIQUE KEY `mobno` (`mobno`),
+  ADD UNIQUE KEY `emailid` (`emailid`);
 
 --
--- Indexes for table `subject`
+-- Indexes for table `subjects`
 --
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subj_id`);
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`subj_id`,`std_id`);
 
 --
 -- Indexes for table `tbl_course`
@@ -52250,7 +52272,13 @@ ALTER TABLE `tbl_degree`
 -- Indexes for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`std_id`);
+
+--
+-- Indexes for table `tbl_subject`
+--
+ALTER TABLE `tbl_subject`
+  ADD PRIMARY KEY (`subj_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -52281,34 +52309,22 @@ ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
 
 --
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `subj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- AUTO_INCREMENT for table `tbl_course`
 --
 ALTER TABLE `tbl_course`
-  MODIFY `crs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `crs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_degree`
 --
 ALTER TABLE `tbl_degree`
-  MODIFY `deg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `deg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `tbl_login`
+-- AUTO_INCREMENT for table `tbl_subject`
 --
-ALTER TABLE `tbl_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tbl_subject`
+  MODIFY `subj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
